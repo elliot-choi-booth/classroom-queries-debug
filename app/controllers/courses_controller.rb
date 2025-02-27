@@ -7,7 +7,7 @@ class CoursesController < ApplicationController
 
   def show
     the_id = params.fetch("path_id")
-    @course = Course.where({:id => the_id }).at(0)
+    @course = Course.all.where({:id => the_id }).at(0)
 
     render({ :template => "courses/show" })
   end
@@ -27,8 +27,8 @@ class CoursesController < ApplicationController
   end
 
   def update
-    id = params.fetch("path_id")
-    @course = Course.where({ :id => the_id }).at(0)
+    the_id = params.fetch("path_id")
+    @course = Course.all.where({ :id => the_id }).at(0)
 
     @course.title = params.fetch("query_title")
     @course.term_offered = params.fetch("query_term_offered")
